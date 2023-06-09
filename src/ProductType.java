@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class ProductType {
     private String name;
     private double price;
@@ -20,5 +22,18 @@ public class ProductType {
     }
     public String toString(){
         return this.name + " " + this.price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductType that = (ProductType) o;
+        return Double.compare(that.price, price) == 0 && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price);
     }
 }
